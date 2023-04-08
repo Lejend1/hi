@@ -1,0 +1,45 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "BBT", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Tab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+  })
+function gofuckyourself()
+    game.workspace.Gravity = 0
+    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-51.1823959, 80.6168747, -536.437805)
+    local tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(30, Enum.EasingStyle.Linear)
+    local tween =
+        tweenService:Create(
+        game:GetService("Players")["LocalPlayer"].Character:WaitForChild("HumanoidRootPart"),
+        tweenInfo,
+        {CFrame = CFrame.new(-60.5737877, 53.9498825, 8666.35059)}
+    )
+    tween:Play()
+    wait(30)
+    tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(0, Enum.EasingStyle.Linear)
+    tween =
+        tweenService:Create(
+        game:GetService("Players")["LocalPlayer"].Character:WaitForChild("HumanoidRootPart"),
+        tweenInfo,
+        {CFrame = CFrame.new(-55.5486526, -360.063782, 9489.0498)}
+    )
+    tween:Play()
+    game.workspace.Gravity = 196.2
+end
+Tab:AddToggle({
+    Name = "Auto-Farm",
+    Default = false,
+    Callback = function(value)
+        if value then
+            gofuckyourself()
+            game:GetService("RunService").Stepped:connect(
+                function()
+                    game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(11)
+                end
+            )
+        else
+game.workspace.Gravity = 196.2 game.Players.LocalPlayer.Character.Head:Destroy()
+        end
+    end
+})
