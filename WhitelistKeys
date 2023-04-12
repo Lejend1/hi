@@ -5,3 +5,4 @@ local Whitelist =
  "LEGEND",
  "LUA"
 }
+return Whitelist
